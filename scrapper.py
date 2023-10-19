@@ -14,5 +14,13 @@ soup = BeautifulSoup(response, 'lxml')
 
 print(soup.find('span', class_ ="uael-woo-product-category"))
 print(soup.find_all('h2', class_ ="woocommerce-loop-product__title"))
+print(soup.find_all('div', class_ ="uael-woo-products-summary-wrap"))
+items = []
+containers = soup.find_all('div', class_ ="uael-woo-products-summary-wrap")
+for container in containers:
+    name  = container.find('h2', class_ ="woocommerce-loop-product__title").text
+    priceSymbol = container.find('span', class_ ="woocommerce-Price-currencySymbol").text
+    price = container.find('span', class_ ="woocommerce-Price-amount amount").text
 
+    print("{}  = {} : {}".format(name,priceSymbol,price) )
 #print(soup.get_text())
